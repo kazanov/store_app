@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :items do
     get :upvote,    on: :member
+    get :downvote,    on: :member
     get :expensive, on: :collection
   end
+
+
+  root to: "items#index"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

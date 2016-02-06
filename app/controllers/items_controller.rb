@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-	before_action :find_item, only: [:show, :edit, :update, :destroy, :upvote]
+	before_action :find_item, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
 	def index
 		@items = Item.all
@@ -55,6 +55,11 @@ class ItemsController < ApplicationController
 
 	def upvote
 		@item.increment!(:votes_count)
+		redirect_to action: :index
+	end
+
+	def downvote
+		@item.decrement!(:votes_count)
 		redirect_to action: :index
 	end
 
